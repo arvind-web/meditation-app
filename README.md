@@ -1,5 +1,6 @@
 # Meditation App
-A minimalist app which plays ambient sounds, so that you can think deeply.
+- A minimalist app which plays ambient sounds, so that you can think deeply.
+- Used Vanilla JS, HTML and CSS
 
 ## Pending enhancements:
 1. Create a progress bar for song
