@@ -5,69 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="#" />
     <title>Meditate</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div class="app">
-      <div class="vid-container">
-        <video loop>
-          <source src="./video/rain.mp4" type="video/mp4" />
-        </video>
+      <!-- the background goes here-->
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
-      <div class="time-select">
-        <button data-time="120">2 Minutes</button>
-        <button data-time="300">5 Minutes</button>
-        <button data-time="600">10 Minutes</button>
+
+      <!-- header -->
+      <div class="app-header">
+        <h3>RUMINATE</h3>
       </div>
-      <div class="player-container">
-        <audio class="song">
-          <source src="./sounds/rain.mp3" />
-        </audio>
-        <img src="./svg/play.svg" alt="play" class="play" />
-        <svg
-          class="track-outline"
-          width="453"
-          height="453"
-          viewBox="0 0 453 453"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="226.5"
-            cy="226.5"
-            r="216.5"
-            stroke="white"
-            stroke-width="20"
-          />
-        </svg>
-        <svg
-          class="moving-outline"
-          width="453"
-          height="453"
-          viewBox="0 0 453 453"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="226.5"
-            cy="226.5"
-            r="216.5"
-            stroke="#018EBA"
-            stroke-width="20"
-          />
-        </svg>
-        <h3 class="time-display">0:00</h3>
-      </div>
-      <div class="sound-picker">
-        <button data-sound="./sounds/rain.mp3" data-video="./video/rain.mp4">
-          <img src="./svg/rain.svg" alt="rain" />
-        </button>
-        <button data-sound="./sounds/beach.mp3" data-video="./video/beach.mp4">
-          <img src="./svg/beach.svg" alt="beach" />
-        </button>
+      <!-- main app starts here -->
+      <div class="main-app">
+        <div class="row">
+          <div class="col-12">
+            <div class="time-select">
+              <button data-time="120">2 Minutes</button>
+              <button data-time="300">5 Minutes</button>
+              <button data-time="600">10 Minutes</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 player-btn-container-col">
+            <audio class="song">
+              <source src="./sounds/ambience1.mp3" />
+            </audio>
+            <div class="player-btn-container">
+              <i class="fas fa-play play-btn" id="play" onclick=playSound(this)></i>
+              <i class="fas fa-pause pause-btn" id="pause" onclick=playSound(this)></i>
+            </div>
+            <p class="time-display">0:00</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+              <div class="sound-picker">
+                <button data-sound="ambience" disabled>CHANGE</button>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
 
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js></script>
     <script src="./index.js"></script>
   </body>
 </html>

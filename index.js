@@ -1,38 +1,34 @@
 const app = () => {
   const song = document.querySelector(".song");
-  const play = document.querySelector(".play");
-  const outline = document.querySelector(".moving-outline circle");
-  const video = document.querySelector(".vid-container video");
 
-  //selecting all sounds
-  const sounds = document.querySelectorAll(".sound-picker button");
+  let songSrc = "./sounds/";
+
+  //selecting change button
+  const soundBtn = document.querySelectorAll(".sound-picker button");
 
   //time display
   const timeDisplay = document.querySelector(".time-display");
   const timeSelect = document.querySelectorAll(".time-select button");
 
-  //get the length of the outline
-  const outlineLength = outline.getTotalLength();
-
   //duration
   let songDuration = 600;
 
-  outline.style.strokeDasharray = outlineLength;
-  outline.style.strokeDashoffset = outlineLength;
-
   //pick different sounds
-  sounds.forEach((sound) => {
+  soundBtn.forEach((sound) => {
     sound.addEventListener("click", function () {
-      song.src = this.getAttribute("data-sound");
-      video.src = this.getAttribute("data-video");
-      checkPlaying(song);
+      song.src =
+        songSrc +
+        this.getAttribute("data-sound") +
+        Math.floor(Math.random() * 8 + 1) +
+        ".mp3";
+      checkPlaying(song, "play");
     });
   });
 
   //play sound
-  play.addEventListener("click", () => {
-    checkPlaying(song);
-  });
+  playSound = (thisClick) => {
+    checkPlaying(song, thisClick.id);
+  };
 
   //select time duration
   timeSelect.forEach((option) => {
@@ -45,15 +41,15 @@ const app = () => {
   });
 
   //function specifically to play and pause sound
-  const checkPlaying = (song) => {
-    if (song.paused) {
+  const checkPlaying = (song, playClass) => {
+    if (playClass.toLowerCase() === "play") {
       song.play();
-      video.play();
-      play.src = "./svg/pause.svg";
+      document.querySelector("#play").style.display = "none";
+      document.querySelector("#pause").style.display = "inline-block";
     } else {
       song.pause();
-      video.pause();
-      play.src = "./svg/play.svg";
+      document.querySelector("#play").style.display = "inline-block";
+      document.querySelector("#pause").style.display = "none";
     }
   };
 
@@ -65,8 +61,8 @@ const app = () => {
     let minutes = Math.floor(elapsedTime / 60);
 
     //animate here
-    let progress = outlineLength - (currentTime / songDuration) * outlineLength;
-    outline.style.strokeDashoffset = progress;
+    //let progress = outlineLength - (currentTime / songDuration) * outlineLength;
+    //outline.style.strokeDashoffset = progress;
 
     //animate the time display
     timeDisplay.textContent = `${minutes}:${second}`;
@@ -74,8 +70,8 @@ const app = () => {
     if (currentTime >= songDuration) {
       song.pause();
       song.currentTime = 0;
-      play.src = "./svg/pause.svg";
-      video.pause();
+      document.querySelector("#play").style.display = "inline-block";
+      document.querySelector("#pause").style.display = "none";
     }
   };
 };
